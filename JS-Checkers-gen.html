@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Dunny's funky color Blocks: The Sequel: Checkers 2</title>
+		<style type="text/css">
+			body
+			{
+				font-family: Arial;
+			}
+			p
+			{
+				padding: 0;
+				margin: 0;
+				display: inline-block;
+				aspect-ratio: 1 / 1; 	
+			}
+			.cyan
+			{
+				background-color:  cyan;
+			}
+			.magenta
+			{
+				background-color: magenta;
+			}
+			.yellow
+			{
+				background-color: yellow;
+			}
+			.black
+			{
+				color: white;
+				background-color: black;
+			}
+			.white
+			{
+				background-color: white;
+			}
+			.red
+			{
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<header><h1>Dunny's funky color Blocks: The Sequel: Checkers 2</h1></header>
+		<div>
+			<h3>Let's get funky</h3>
+			<label for="rows">Rows (1-20):</label>
+			<input type="number" id="rows" value = "2" name="rows" min="1" max="20">
+			<label for="columns">Columns(1-20):</label>
+			<input type="number" id="columns" value = "2" name="columns" min="1" max="20">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		//Random numbers function thing
+		function getRandomInt(min, max){return Math.floor(Math.random() * (max - min)) + min;}
+
+		//User input stuff
+		var rowsVal = 2;
+		var colVal = 3;
+		const rowInput = document.querySelector("#rows");
+		rowInput.addEventListener("change", (event) => 
+		{
+			rowsVal = event.target.value;
+			genBoard();
+		});
+		const colInput = document.querySelector("#columns");
+		colInput.addEventListener('change', (event) => 
+		{
+			colVal = event.target.value;
+			genBoard();
+		});
+
+		//Generate a cool ass board 
+		function genBoard()
+		{
+			//Delete the old board 
+			document.querySelectorAll('p').forEach(el => el.remove());
+
+			//Generate the cool board
+			var body = document.body;
+			const colors = ["cyan","magenta","yellow","black","red","white"];
+			var total = colVal*rowsVal;
+			for(let i = 0; i < total; i++)
+			{
+				let color;
+				let paragraph = document.createElement('p');
+				paragraph.style.width = `${1/colVal * 100}%`;
+				if (i %2 == 0)
+				{
+					color = "black"
+				}
+				else
+				{
+					color = "white"
+				}
+				// vvv Uncomment this to get random colors! vvv
+				//color = colors[getRandomInt(0,colors.length)];
+				// vvv Uncomment this to show the name of the color in the square vvv
+				//paragraph.innerHTML = color;
+				paragraph.classList.add(color);
+				document.body.appendChild(paragraph);
+			}
+		}
+	</script>
+</html>
